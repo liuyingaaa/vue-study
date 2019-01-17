@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+        .bgc{
+        background-color:pink;
+        }
+        .yellow{
+            color: yellow
+        }
+    </style>
+</head>
+<body>
+    <div class="" id="app">
+        <input type="text" v-model='msg'>
+        <ul >
+            <li v-for="(item,index) in list">我的idol是{{item}}---排名{{index}}</li>
+        </ul>
+        <ul >
+                <li v-for="(item,key,index) of info">{{key}}--{{item}}--{{index}}</li>
+        </ul>
+        <div id="word"><span v-for="count in num">{{count}}</span></div>
+        <h3 v-text=msg1 v-show="flag"></h3>
+        <h3 v-html=msg2></h3>
+        <div :class="['bgc',flag?'yellow':'']">我C位出道了</div>   
+     <h3>{{msg}}</h3>   
+    <h2 :title="biaoti">v-bind:title简写</h2>
+    <h2 :data-id="aaa">现在简写</h2>
+    <button @click="dianwo">缩写绑定方法</button>
+    <button @click="run">点我跑起来</button>
+    <button @click="change">点我添加数据到数组中</button>
+</div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                num:10,
+                list:['lh','Jimmy li','ly'],
+                info:{
+                    name:'ly',
+                    age:20,
+                    tag:'小仙女'
+                },
+                flag:true,
+                msg1:'ly',
+                msg2:'<a href="">aaa</a>',
+                msg:'真正的双向数据绑定',
+                biaoti:'我是一个title',
+                aaa:'自定义属性',
+                intervalid:null
+            },
+            methods:{
+                /* dianwo(e){
+                    e.target.style='color:pink'
+                } */
+                dianwo(){
+                   this.flag=!this.flag 
+                },
+                run(e){
+                    console.log(this.intervalid)
+                    if(this.flag){
+                    this.intervalid=setInterval(()=>{
+                    var str=e.target.innerHTML
+                    var start=str.substring(0,1)
+                    var end=str.substring(1)
+                    // console.log(start,end)
+                    e.target.innerHTML=end+start
+                    },500)
+                    this.flag=false
+                }else{
+                   
+                    clearInterval(this.intervalid),
+                    this.intervalid=null,
+                    this.flag=true
+                    }
+                }
+            ,change(e){
+            this.list.push(this.msg)
+            }
+            }
+        })
+    </script>
+</body>
+</html>               

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var objectArray=[
+      { id: 5, unique: 'unique_5' },
+      { id: 4, unique: 'unique_4' },
+      { id: 3, unique: 'unique_3' },
+      { id: 2, unique: 'unique_2' },
+      { id: 1, unique: 'unique_1' },
+      { id: 0, unique: 'unique_0' },
+    ]
+        const length = objectArray.length
+        for (let i = 0; i < length; ++i) {
+            const x = Math.floor(Math.random() * length)
+            const y = Math.floor(Math.random() * length)
+            const temp = objectArray[x]
+            objectArray[x] = objectArray[y]
+            objectArray[y] = temp
+        }
+        console.log(objectArray)
+    </script>
+</body>
+
+</html>
